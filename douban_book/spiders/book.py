@@ -18,11 +18,13 @@ class BookSpider(scrapy.Spider):
             for start in range(0, 1000, 20):
                 url = f'https://book.douban.com/tag/{category}?start={start}'
                 yield scrapy.Request(url=url, callback=self.parse_tag_page)
+                exit()
 
     def parse_tag_page(self, response):
         book_urls = response.xpath('//*[@id="subject_list"]/ul/li/div[2]/h2/a/@href').extract()
         for url in book_urls:
             yield scrapy.Request(url=url, callback=self.parse_detail_page)
+            exit()
 
     def parse_detail_page(self, response):
         item = DoubanBookItem()
@@ -67,22 +69,26 @@ class BookSpider(scrapy.Spider):
         item["translator"] = ','.join(translator)
 
         #内容简介
-        item['summary'] = response.xpath("//div[@id='link-report']//div[@class='intro']").extract_first('NULL')
+        item['summary'] = response.xpath("//*[@id='link-report']/span[@class='all hidden']/div/div[@class='intro']").extract_first('NULL')
         #作者简介
         item['author_intro'] = response.xpath(
             "//span[text()='作者简介']/../following-sibling::div[1]//div[@class='intro']").extract_first('NULL')
         
         if response.url is not None:
             book_id = re.search(r'(\d+)/$', response.url).group(1)
-            #豆瓣id
-            item['douban_id'] = book_id
+            # #豆瓣id
+            # item['douban_id'] = book_id
             directory_list = response.xpath(f"//div[@id='dir_{book_id}_full']/text()").extract()
+            
             item['catalog'] = ';'.join(directory_list)
 
         tags = response.xpath("//div[@id='db-tags-section']//a[@class='  tag']/text()").extract()
         item["tags"] = ','.join(tags)
         #采集时间
         item["grab_time"] = int(time.time())
+
+        print(item)
+        exit()
 
         yield item
 

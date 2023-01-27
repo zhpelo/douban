@@ -36,10 +36,11 @@ MYSQL_PASSWORD = '123456'
 
 # Logging
 # LOG_LEVEL = "DEBUG"
-# LOG_LEVEL = "DEBUG"
-from datetime import datetime
-n = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
-LOG_FILE = f"./log/{n}_error.log"
+# LOG_LEVEL = "ERROR"
+LOG_LEVEL = "INFO"
+# from datetime import datetime
+# n = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
+# LOG_FILE = f"./log/{n}_error.log"
 
 # 异常处理 429->too many requests abuyun代理：每秒5条
 RETRY_TIMES = 10
@@ -49,7 +50,7 @@ RETRY_HTTP_CODES = [500, 502, 503, 504, 522, 524, 407, 408, 429, 520]
 IMAGES_STORE = './images'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'douban_book (+http://www.yourdomain.com)'
+USER_AGENT =  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
