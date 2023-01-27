@@ -26,7 +26,7 @@ class DoubanBookItem(scrapy.Item):
     summary     = scrapy.Field()
     tags        = scrapy.Field()
     rating      = scrapy.Field()
-    grab_time   = scrapy.Field()
+    updatetime   = scrapy.Field()
     grab_url    = scrapy.Field()
     status      = scrapy.Field()
 

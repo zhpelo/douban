@@ -24,7 +24,7 @@ class BookSpider(scrapy.Spider):
         book_urls = response.xpath('//*[@id="subject_list"]/ul/li/div[2]/h2/a/@href').extract()
         for url in book_urls:
             yield scrapy.Request(url=url, callback=self.parse_detail_page)
-            exit()
+            # exit()
 
     def parse_detail_page(self, response):
         item = DoubanBookItem()
@@ -69,7 +69,10 @@ class BookSpider(scrapy.Spider):
         item["translator"] = ','.join(translator)
 
         #内容简介
-        item['summary'] = response.xpath("//*[@id='link-report']/span[@class='all hidden']/div/div[@class='intro']").extract_first('NULL')
+        item['summary'] = response.xpath("//*[@id='link-report']/span[@class='all hidden']/div/div[@class='intro']").extract_first()
+        if not item['summary']:
+            item['summary'] = response.xpath("//*[@id='link-report']/div/div").extract_first('NULL')
+
         #作者简介
         item['author_intro'] = response.xpath(
             "//span[text()='作者简介']/../following-sibling::div[1]//div[@class='intro']").extract_first('NULL')
@@ -85,11 +88,20 @@ class BookSpider(scrapy.Spider):
         tags = response.xpath("//div[@id='db-tags-section']//a[@class='  tag']/text()").extract()
         item["tags"] = ','.join(tags)
         #采集时间
-        item["grab_time"] = int(time.time())
+        item["updatetime"] = int(time.time())
 
-        print(item)
-        exit()
+        #更多格式处理
+        item['image'] = item['image'][25: ]
 
+        # pattern = re.compile(r'<[^>]+>',re.S)
+        # item['series'] = pattern.sub('', item['series'])
+
+        item['catalog'] = item['catalog'][: -25]
+
+        # print("------------------------------")
+        # print(item)
+        # exit()
+        
         yield item
 
        
