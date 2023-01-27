@@ -26,8 +26,6 @@ CREATE TABLE `book` (
 	`pages` INT(11) NULL DEFAULT NULL COMMENT '页数',
 	`tags` VARCHAR(255) NULL DEFAULT NULL COMMENT '标签' COLLATE 'utf8mb4_general_ci',
 	`rating` INT(11) NULL DEFAULT NULL COMMENT '评分',
-	`clc` VARCHAR(50) NULL DEFAULT NULL COMMENT '中图法分类号' COLLATE 'utf8mb4_general_ci',
-	`comments` INT(11) NOT NULL DEFAULT '0' COMMENT '评论数',
 	`updatetime` INT(11) NULL DEFAULT NULL COMMENT '更新时间',
 	`status` ENUM('normal','hidden') NOT NULL DEFAULT 'normal' COMMENT '状态' COLLATE 'utf8mb4_general_ci',
 	`grab_url` VARCHAR(60) NULL DEFAULT NULL COMMENT '采集网址' COLLATE 'utf8mb4_general_ci',
