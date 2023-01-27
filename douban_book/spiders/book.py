@@ -18,7 +18,7 @@ class BookSpider(scrapy.Spider):
             for start in range(0, 1000, 20):
                 url = f'https://book.douban.com/tag/{category}?start={start}'
                 yield scrapy.Request(url=url, callback=self.parse_tag_page)
-                exit()
+                # exit()
 
     def parse_tag_page(self, response):
         book_urls = response.xpath('//*[@id="subject_list"]/ul/li/div[2]/h2/a/@href').extract()
@@ -53,7 +53,7 @@ class BookSpider(scrapy.Spider):
         }
         for name, item_name in info_map.items():
             try:
-                temp = re.search(rf'{name}:</span>(.*?)<br>', info)
+                temp = re.search(rf'{name}:</span>([\s\S]*?)<br>', info)
             except:
                 continue
             if temp is not None:
@@ -93,15 +93,16 @@ class BookSpider(scrapy.Spider):
         #更多格式处理
         item['image'] = item['image'][25: ]
 
-        # pattern = re.compile(r'<[^>]+>',re.S)
-        # item['series'] = pattern.sub('', item['series'])
+        pattern = re.compile(r'<[^>]+>',re.S)
+
+        if item.get('series'):
+            item['series'] = pattern.sub('', item['series'])
+
+        if item.get('publisher'):
+            item['publisher'] = pattern.sub('', item['publisher'])
 
         item['catalog'] = item['catalog'][: -25]
 
-        # print("------------------------------")
-        # print(item)
-        # exit()
-        
         yield item
 
        
