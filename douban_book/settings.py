@@ -27,12 +27,12 @@ NEWSPIDER_MODULE = 'douban_book.spiders'
 # SCHEDULER_FLUSH_ON_START = True
 
 # Mysql
-MYSQL_HOST = '127.0.0.1'
+MYSQL_HOST = '192.168.2.13'
 # MYSQL_DATABASE = 'collie_alpha'
-MYSQL_DATABASE = 'douban2'
+MYSQL_DATABASE = 'caiji'
 MYSQL_PORT = 3306
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'root'
+MYSQL_USER = 'user'
+MYSQL_PASSWORD = '123456'
 
 # Logging
 # LOG_LEVEL = "DEBUG"
