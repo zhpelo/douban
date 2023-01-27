@@ -31,7 +31,7 @@ class BookSpider(scrapy.Spider):
         if schema is not None:
             d = eval(schema)
             item['title'] = d.get('name')
-            item['isbn13'] = d.get('isbn')
+            item['isbn'] = d.get('isbn')
             try:
                 author = d['author'][0].get('name')
             except IndexError:
