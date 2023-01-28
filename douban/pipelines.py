@@ -75,7 +75,7 @@ class MysqlPipeline:
             self._store_dict_to_table(data, table)
         else:
             self.db.commit()
-            print("\t\t 入库完成")
+            print("\033[32m入库完成\033[0m")
 
 
 # class ImagePipeline(ImagesPipeline):

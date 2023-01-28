@@ -5,7 +5,6 @@
 
 import scrapy
 
-
 class DoubanBookItem(scrapy.Item):
     table   = 'book'
     isbn      = scrapy.Field()

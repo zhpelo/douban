@@ -36,8 +36,8 @@ MYSQL_PASSWORD = '123456'
 
 # Logging
 # LOG_LEVEL = "DEBUG"
-# LOG_LEVEL = "ERROR"
-LOG_LEVEL = "INFO"
+LOG_LEVEL = "ERROR"
+# LOG_LEVEL = "INFO"
 # from datetime import datetime
 # n = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 # LOG_FILE = f"./log/{n}_error.log"

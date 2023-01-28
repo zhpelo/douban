@@ -5,27 +5,20 @@ import time
 from douban.items import DoubanBookItem
 
 
-class BookSpider(scrapy.Spider):
-    name = 'book'
+class AllBookSpider(scrapy.Spider):
+    name = 'allbook'
     allowed_domains = ['book.douban.com']
-    start_urls = ['https://book.douban.com/tag/?view=type&icn=index-sorttags-all']
+    
+    def start_requests(self):
+        pages=[]
+        # 36175317
+        for i in range(1000000,1010000):
+            url='https://book.douban.com/subject/%s/'%i
+            page=scrapy.Request(url)
+            pages.append(page)
+        return pages
 
-    def parse(self, response, **kwargs):
-        category_list = response.xpath("//div[@class='article']//tbody//td/a/text()").extract()
-        # 遍历所有分类，每个分类下有1000条数据可爬取
-        for category in category_list:
-            for start in range(0, 1000, 20):
-                url = f'https://book.douban.com/tag/{category}?start={start}'
-                yield scrapy.Request(url=url, callback=self.parse_tag_page)
-                # exit()
-
-    def parse_tag_page(self, response):
-        book_urls = response.xpath('//*[@id="subject_list"]/ul/li/div[2]/h2/a/@href').extract()
-        for url in book_urls:
-            yield scrapy.Request(url=url, callback=self.parse_detail_page)
-            # exit()
-
-    def parse_detail_page(self, response):
+    def parse(self, response):
         item = DoubanBookItem()
         item['grab_url'] = response.url
         schema = response.xpath("//script[@type='application/ld+json']/text()").extract_first()
