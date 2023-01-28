@@ -1,4 +1,4 @@
-# Scrapy settings for douban_book project
+# Scrapy settings for douban project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -10,10 +10,10 @@
 # DataLoss
 DOWNLOAD_FAIL_ON_DATALOSS = False
 
-BOT_NAME = 'douban_book'
+BOT_NAME = 'douban'
 
-SPIDER_MODULES = ['douban_book.spiders']
-NEWSPIDER_MODULE = 'douban_book.spiders'
+SPIDER_MODULES = ['douban.spiders']
+NEWSPIDER_MODULE = 'douban.spiders'
 
 # 启动Scrapy-Redis去重过滤器，取消Scrapy的去重功能
 # DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
@@ -75,7 +75,7 @@ COOKIES_ENABLED = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'douban_book.middlewares.DoubanBookSpiderMiddleware': 543,
+#    'douban.middlewares.DoubanBookSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
@@ -83,9 +83,9 @@ COOKIES_ENABLED = False
 DOWNLOADER_MIDDLEWARES = {
         'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
         'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
-        # 'douban_book.middlewares.CookieMiddleware': 401,
-        'douban_book.middlewares.ProxyMiddleware': 402,
-        'douban_book.middlewares.DoubanBookDownloaderMiddleware': 543,
+        # 'douban.middlewares.CookieMiddleware': 401,
+        'douban.middlewares.ProxyMiddleware': 402,
+        'douban.middlewares.DoubanBookDownloaderMiddleware': 543,
 }
 
 # Enable or disable extensions
@@ -97,8 +97,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'douban_book.pipelines.MysqlPipeline': 300,
-    # 'douban_book.pipelines.ImagePipeline': 301,
+    'douban.pipelines.MysqlPipeline': 300,
+    # 'douban.pipelines.ImagePipeline': 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

@@ -105,7 +105,7 @@ class DoubanBookDownloaderMiddleware:
         # Called with the response returned from the downloader.
         try:
             if 'navigator.platform' in response.text:
-                print("Your IP is restricted.", response.url)
+                print("您的IP受到限制。", response.url)
                 return request
         except:
             return response

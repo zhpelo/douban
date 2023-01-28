@@ -7,7 +7,7 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import pymysql
-from douban_book.items import DoubanBookItem
+from douban.items import DoubanBookItem
 from uuid import uuid1
 from scrapy import Request
 from scrapy.exceptions import DropItem

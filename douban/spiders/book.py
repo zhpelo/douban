@@ -3,7 +3,7 @@ from copy import deepcopy
 import re
 import json
 import time
-from douban_book.items import DoubanBookItem
+from douban.items import DoubanBookItem
 
 
 class BookSpider(scrapy.Spider):
