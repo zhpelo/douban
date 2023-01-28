@@ -85,8 +85,6 @@ class BookSpider(scrapy.Spider):
             
             item['catalog'] = ';'.join(directory_list)
 
-        tags = response.xpath("//div[@id='db-tags-section']//a[@class='  tag']/text()").extract()
-        item["tags"] = ','.join(tags)
         #采集时间
         item["updatetime"] = int(time.time())
 

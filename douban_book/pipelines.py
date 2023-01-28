@@ -58,7 +58,7 @@ class MysqlPipeline:
         :param data: 字典数据
         :param table: 表名称
         """
-        url = data['grab_url']
+        # url = data['grab_url']
         keys = ', '.join(data.keys())
         values = ', '.join(['%s'] * len(data))
         sql =f'insert into {table} ({keys}) values ({values})'
