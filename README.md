@@ -6,6 +6,9 @@
 php install -r requirements.txt
 ```
 
+采集开始网址：
+`https://book.douban.com/tag/?view=type&icn=index-sorttags-all`
+
 所需的mysql数据表结构
 
 ```

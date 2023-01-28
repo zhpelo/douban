@@ -84,7 +84,7 @@ DOWNLOADER_MIDDLEWARES = {
         'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
         'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
         # 'douban_book.middlewares.CookieMiddleware': 401,
-        # 'douban_book.middlewares.ProxyMiddleware': 402,
+        'douban_book.middlewares.ProxyMiddleware': 402,
         'douban_book.middlewares.DoubanBookDownloaderMiddleware': 543,
 }
 

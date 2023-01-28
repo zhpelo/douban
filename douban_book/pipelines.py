@@ -46,7 +46,7 @@ class MysqlPipeline:
     def process_item(self, item, spider):
         # book_id = uuid1().hex
         if isinstance(item, DoubanBookItem):
-            print('book: ', item.get('title'), item.get('grab_url'))
+            print('开始入库: ', item.get('title'), '\t\t\t',item.get('author'))
             data = dict(item)
             self._store_dict_to_table(data, 'book')
 
@@ -75,6 +75,7 @@ class MysqlPipeline:
             self._store_dict_to_table(data, table)
         else:
             self.db.commit()
+            print("\t\t 入库完成")
 
 
 # class ImagePipeline(ImagesPipeline):
