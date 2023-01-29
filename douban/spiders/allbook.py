@@ -12,7 +12,8 @@ class AllBookSpider(scrapy.Spider):
     def start_requests(self):
         pages=[]
         # 36175317
-        for i in range(1000000,1010000):
+        # 1010000
+        for i in range(1600000,1800000):
             url='https://book.douban.com/subject/%s/'%i
             page=scrapy.Request(url)
             pages.append(page)
