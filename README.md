@@ -5,9 +5,17 @@
 ```
 php install -r requirements.txt
 ```
+一共有两个爬虫，第一个的启动命令是：
+scrapy crawl book
 
 采集开始网址：
 `https://book.douban.com/tag/?view=type&icn=index-sorttags-all`
+
+第二个的启动命令是：
+scrapy crawl allbook
+
+会采集 遍历循环 豆瓣读书的id 生成的网址：
+`https://book.douban.com/subject/{循环生成的数字}/`
 
 所需的mysql数据表结构
 
