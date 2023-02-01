@@ -12,12 +12,11 @@ class AllBookSpider(scrapy.Spider):
     def start_requests(self):
         pages=[]
         # 36175317
-        # 1010000
-        for i in range(2000000,2200000):
+        # 10000000
+        #  1010000
+        for i in range(4000000,10000000):
             url='https://book.douban.com/subject/%s/'%i
-            page=scrapy.Request(url)
-            pages.append(page)
-        return pages
+            yield scrapy.Request(url)
 
     def parse(self, response):
         item = DoubanBookItem()
