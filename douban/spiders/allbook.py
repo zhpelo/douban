@@ -10,11 +10,9 @@ class AllBookSpider(scrapy.Spider):
     allowed_domains = ['book.douban.com']
     
     def start_requests(self):
-        pages=[]
-        # 36175317
-        # 10000000
-        #  1010000
-        for i in range(4000000,10000000):
+        # 36175320 10000000 -1
+        # 4000000,10000000
+        for i in range(36175320,10000000, -1):
             url='https://book.douban.com/subject/%s/'%i
             yield scrapy.Request(url)
 
